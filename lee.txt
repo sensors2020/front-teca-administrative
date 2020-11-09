@@ -1,0 +1,14 @@
+npm install -g @angular/cli
+
+npm install
+ng serve
+
+# build for production with minification
+
+ng build
+
+
+
+npm install ngx-spinner --save  
+
+

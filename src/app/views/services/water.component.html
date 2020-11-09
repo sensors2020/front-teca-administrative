@@ -1,0 +1,258 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-magnifier"></i> Búsqueda
+
+<!--Modal no cierre
+			[config]="{ backdrop: 'static' }"
+-->
+			<div bsModal #myModalAdd="bs-modal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalRegistro" aria-hidden="true">
+			  <div class="modal-dialog modal-primary" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+
+				  <div class="modal-body">
+
+
+						 <div class="row">
+							<div class="col-md-12">
+
+
+								 <div class="row">
+									<div class="col-md-12">
+									<label><b>Ubicación:</b> {{iemdevice.direccion}}</label>
+									</div>
+								 </div>						
+								 <div class="row">
+									<div class="col-md-6">
+									<label><b>Serie:</b> {{iemdevice.serie}}</label>
+									</div>
+									<!--
+									<div class="col-md-6">
+									<label><b>Tarifa (LT):</b> {{iemdevice.tarifa}}</label>
+									</div>
+									-->
+								 </div>						
+<!--
+								 <div class="row">
+									<div class="col-md-6">
+									<label><b>Consumo Total (Lt):</b>{{consumoTotal}}</label>
+									</div>
+									<div class="col-md-6">
+									<label><b>Precio Total (S/):</b> {{precioTotal}}</label>
+									</div>
+								 </div>						
+-->
+							</div>
+						</div>
+
+
+
+
+						 <div class="row">
+							<div class="col-md-12">
+
+								<form class="form-register">
+
+								 <div class="row" *ngIf="historico.length <= 0">
+									<div class="col-md-12">
+										No se encontraron registros.
+									</div>
+								 </div>	
+								 
+								 
+								 <div class="row" *ngIf="historico.length > 0">
+									<div class="col-md-12">
+									
+									  <table class="table table-striped">
+										<thead>
+										  <tr class="odd gradeX">
+											<th>FECHA</th>
+											<th>CONSUMO (LT)</th>
+											<th>PRECIO S/.</th>
+										 </tr>
+										</thead>
+										<!-- -->
+										<tbody>
+ 									    <tr *ngFor="let item of historico; let i=index">
+												<td>{{item.fecha_tx}}</td>
+												<td>{{item.litros_i}}</td>
+												<td>{{item.monto}}</td>												
+										</tr>															   
+										</tbody>
+										
+									  </table>
+									  
+		  
+									</div>
+								 </div>						
+
+								</form>
+
+							</div>
+
+						 </div>
+						 
+
+				  </div>
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-primary" (click)="close()">Cerrar</button>
+				  </div>
+				</div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+
+			<div bsModal #myModalAlert="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="1500" role="dialog" aria-labelledby="myModalAlert" aria-hidden="true">
+			  <div class="modal-dialog modal-primary modal-lg" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+				  
+				  <div class="modal-body">
+						 <div class="row">
+							<div class="col-md-12">
+								&nbsp;<br><br>
+							</div>
+						 </div>
+				  
+						 <div class="row">
+							<div class="col-md-12">
+								{{mensaje}}	
+							</div>
+						 </div>
+
+						 <div class="row">
+							<div class="col-md-12">
+								&nbsp;<br><br>
+							</div>
+						 </div>
+				  </div>
+
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" (click)="closeAlert()">Cerrar</button>
+				  </div>  
+
+				</div>
+
+
+			  </div>
+			</div>
+	
+        </div>
+        <div class="card-body">
+          <div class="row">
+
+            <div class="col-sm-4">
+              <div class="form-group">
+				<select class="form-control" name="statusService" [(ngModel)]="statusService">
+					<option [ngValue]="bean.codigo" *ngFor="let bean of estados">{{bean.descripcion}}</option>
+				</select>
+              </div>
+            </div>
+		<!--
+	
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" type="text" class="form-control" id="dispositivo" placeholder="Serie de Dispositivo">				
+              </div>
+            </div>
+		-->
+  
+            <div class="col-sm-4">
+				<i class="cui-magnifying-glass icons font-2xl d-block mt-2" (click)="search()"></i>
+				
+			</div>
+			
+          </div> 
+          	
+		</div>
+		
+		
+      </div>
+    </div><!--/.col-->
+    
+  </div>
+ 
+ 
+
+
+  <div class="row">
+
+
+    <!--/.col-->
+    <div class="col-lg-12">
+      <div class="card">
+		<div class="card-header">
+          <i class="fa fa-align-justify"></i> Administración de Servicios
+
+
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>NOMBRE</th>
+                <th>PERIODO<br>INSCRIPCIÓN</th>
+                <th>ALIAS</th>
+                <th>VOLTAJE</th>
+                <th>CONSUMO <br>(m3)</th>
+                 <th>CONSUMO <br>(S/)</th>
+               <th>ESTADO</th>
+                <th>ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody>
+			
+		    <tr *ngFor="let objeto of returnedUsuarios">
+				<td>{{objeto.apellido}}, {{objeto.nombre}}</td>
+				<td>{{objeto.inscripcion}} - {{objeto.finalizacion}}</td>
+				<td>{{objeto.alias}}</td>
+				<td>{{objeto.voltaje}}</td>
+				<td>{{objeto.metro3}}</td>
+				<td>{{objeto.consumo}}</td>
+                <td>
+<!--
+					<span *ngIf="objeto.estado == 0" class="badge badge-warning">INACTIVO</span>
+					<span *ngIf="objeto.estado == 1" class="badge badge-success">ACTIVO</span>
+	-->				
+					<span *ngIf="objeto.estado_conexion == 1" class="badge badge-primary">INICIADO</span>
+					<span *ngIf="objeto.estado_conexion == 2" class="badge badge-success">CONECTADO</span>
+					<span *ngIf="objeto.estado_conexion == 3" class="badge badge-danger">SIN CONEXIÓN</span>
+					<span *ngIf="objeto.estado_conexion == 4" class="badge badge-warning">BATERIA BAJA</span>
+					
+				</td>
+
+				<td> 
+					<i (click)="view(objeto)" class="fa fa-building-o fa-lg mt-2"></i>
+					&nbsp;&nbsp;&nbsp;
+					<i *ngIf="objeto.estado == 1" (click)="statusServicio(objeto)" title="Desactivar" class="fa fa-thumbs-o-down fa-lg mt-2"></i>
+					<i *ngIf="objeto.estado == 0" (click)="statusServicio(objeto)" title="Activar" class="fa fa-thumbs-o-up fa-lg mt-2"></i>
+					&nbsp;&nbsp;&nbsp;
+					<i (click)="deleteService(objeto)" class="fa fa-trash-o fa-lg mt-2"></i>
+				</td>
+			</tr>															   
+			
+            </tbody>
+          </table>
+		  
+    <pagination [totalItems]="listUsuarios.length" 
+	itemsPerPage={{paginationNumber}}
+	(pageChanged)="pageChanged($event)"></pagination>
+    	    
+
+
+       </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+
+
+</div>

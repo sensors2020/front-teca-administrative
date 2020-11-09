@@ -1,0 +1,108 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Búsqueda
+        </div>
+        <div class="card-body">
+
+		<!--
+		  <div class="row">
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name">Inicio</label>
+				<input type="date" class="form-control" id="inicio" name="inicio" [(ngModel)]="inicio" placeholder="Inicio">				
+              </div>
+            </div>
+  
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name">Fin</label>
+				<input type="date" class="form-control" id="fin" name="fin" [(ngModel)]="fin" placeholder="Fin">				
+              </div>
+            </div>
+  
+   
+          </div>
+		  -->
+         
+
+		  <div class="row">
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="name">Código Dispositivo</label>
+                <input type="text" class="form-control" id="name" placeholder="Código Dispositivo">				
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="name">Año</label>
+				<select class="form-control" name="periodo" [(ngModel)]="periodo">
+					<option [ngValue]="objeto.anio" *ngFor="let objeto of periodos">{{objeto.anio}}</option>
+				</select>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+				
+				&nbsp;&nbsp;&nbsp;
+				<br><i class="cui-magnifying-glass icons font-2xl d-block mt-2"></i>
+            </div>
+
+          </div>
+
+		
+		</div>
+      </div>
+    </div><!--/.col-->
+    
+  </div>
+  
+  <div class="row">
+    
+<div class="col-lg-12">
+      <div class="card">
+       <div class="card-header">
+          <i class="fa fa-align-justify"></i> Reporte de Consumo Mensual
+        </div>
+        <div class="card-body">
+         
+		 	 <div class="row" *ngIf="consumos.length > 0">
+					<div class="col-md-12">
+					
+					  <table class="table table-striped">
+						<thead>
+						  <tr class="odd gradeX">
+							<th>MES</th>
+							<th>CONSUMO (LT)</th>
+							<th>PRECIO S/.</th>
+						  </tr>
+						</thead>
+						
+						<tbody>
+ 					    <tr *ngFor="let item of consumos; let i=index">
+								<td>{{item.mes}}</td>
+								<td>{{item.consumo}}</td>
+								<td>{{item.precio}}</td>
+						</tr>															   
+						</tbody>
+						
+					  </table>
+					  
+		  
+					</div>
+			 </div>						
+
+
+        </div>
+      </div>
+    </div>
+    
+	
+  </div>
+
+</div>

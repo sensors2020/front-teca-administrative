@@ -1,0 +1,691 @@
+<div class="animated fadeIn">
+
+<!--
+<span *ngIf="showLoader" class="loading"></span>
+<div class="spinner-border" style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999;     background: url('img/loading2.gif') 50% 50% no-repeat rgb(249,249,249); opacity: .8;">
+</div>
+style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999;     background: url('img/loading2.gif') 50% 50% no-repeat rgb(249,249,249); opacity: .8;"
+<div class="clearfix">
+  <div class="spinner-border float-right" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+-->
+  
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-magnifier"></i> Búsqueda
+		  &nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;
+		  <button type="button" data-toggle="modal" (click)="open()" class="btn btn-brand btn-sm btn-twitter mr-1" style="margin-bottom: 4px">
+          <i class="icon-doc"></i>
+          <span >Nuevo Usuario</span>
+          </button>
+
+	
+			<div bsModal #myModalAddService="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalService" aria-hidden="true">
+			  <div class="modal-dialog modal-primary modal-lg" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+
+				  <div class="modal-body">
+				  
+						 <div class="row">
+							<div class="col-md-12">
+
+								<form class="form-register">
+						 			
+								 <div class="row">
+									<div class="col-md-4">
+										<select class="form-control" name="servicio" [(ngModel)]="usuario.servicio">
+											<option [ngValue]="objeto" *ngFor="let objeto of servicios">{{objeto.description}}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+											<input type="hidden" class="form-control" name="codigo" [(ngModel)]="usuario.codigo">
+											<input type="text" class="form-control" name="dispositivo" [(ngModel)]="usuario.dispositivo" placeholder="Serie de Dispositivo">
+									</div>
+
+									<div class="col-md-5">
+											<input type="text" class="form-control" name="ubicacion" [(ngModel)]="usuario.ubicacion" placeholder="Ubicación de Dispositivo">
+									</div>
+								 </div>
+
+								 <div class="row">
+									<div class="col-md-4">
+										<select class="form-control" name="plan" [(ngModel)]="usuario.plan">
+											<option [ngValue]="objeto" *ngFor="let objeto of planes">{{objeto.description}}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+											<input type="date" class="form-control" name="inscripcion" [(ngModel)]="usuario.inscripcion" placeholder="Fecha de inscripcion">
+									</div>
+
+									<div class="col-md-5">
+											<input type="date" class="form-control" name="finalizacion" [(ngModel)]="usuario.finalizacion" placeholder="Fecha de finalización">
+									</div>
+								 </div>
+
+
+								 <div class="row">
+									<div class="col-md-4">
+											<input type="text" class="form-control" name="alias" [(ngModel)]="usuario.alias" placeholder="Alias">
+									</div>
+
+									<div class="col-md-3">
+											<input type="text" class="form-control" name="tarifa" [(ngModel)]="usuario.tarifa" placeholder="Precio por Lttro">
+									</div>
+								 </div>
+<!--
+								 <div class="row" style="visibility: hidden;">
+									<div class="col-md-3">
+											<input type="text" class="form-control" name="latitud" [(ngModel)]="usuario.latitud" placeholder="Latitud">
+									</div>
+									<div class="col-md-5">
+											<input type="text" class="form-control" name="latitud" [(ngModel)]="usuario.longitud" placeholder="Longitud">
+									</div>
+									<div class="col-md-5">
+											&nbsp;
+									</div>
+								 </div>
+-->								 
+								 <div class="row">
+									<div class="col-md-4">
+										<select class="form-control" name="departamento" [(ngModel)]="usuario.departamento">
+											<option [ngValue]="dep" *ngFor="let dep of departamentos">{{dep.departamento}}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<select class="form-control" name="provincia" [(ngModel)]="usuario.provincia">
+											<option [ngValue]="pro" *ngFor="let pro of provincias">{{pro.provincia}}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<select class="form-control" name="distrito" [(ngModel)]="usuario.distrito">
+											<option [ngValue]="dis" *ngFor="let dis of distritos">{{dis.distrito}}</option>
+										</select>
+									</div>
+									<!--
+									<div class="col-md-2">
+											<div align="center"> <span (click)="addItem()" class="icon-plus icons font-2xl"></span>	</div>
+									</div>
+									-->
+								 </div>
+
+
+
+
+								 <div class="row" *ngIf="usuario.devices.length > 0">
+									<div class="col-md-12">
+									
+									  <table class="table table-striped">
+										<thead>
+										  <tr class="odd gradeX">
+											<th>SERVICIO</th>
+											<th>DISPOSITIVO</th>
+											<th>ACCIÓN</th>
+										  </tr>
+										</thead>
+										<!-- -->
+										<tbody>
+ 									    <tr *ngFor="let item of usuario.devices; let i=index">
+												<td>{{item.description}}</td>
+												<td>{{item.serie}}</td>
+												<td> 
+													<span (click)="deleteItem(item)" class="icon-close icons font-2xl"></span>										
+												</td>
+										</tr>															   
+										</tbody>
+										
+									  </table>
+									  
+		  
+									</div>
+								 </div>						
+
+								</form>
+
+							</div>
+
+						 </div>
+						 
+				  </div>
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" (click)="closeService()">Cerrar</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-primary" (click)="addService()">Guardar</button>
+				  </div>
+				</div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+
+
+
+			<div bsModal #myModalAdd="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalRegistro" aria-hidden="true">
+			  <div class="modal-dialog modal-primary modal-lg" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+
+				  <div class="modal-body">
+				  
+						 <div class="row">
+							<div class="col-md-12">
+
+								<form class="form-register">
+
+								 <div class="row">
+									<div class="col-md-4">
+									<!--<label>Nombres</label>-->
+									<input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" placeholder="Nombres">
+									</div>
+									<div class="col-md-4">
+									<!--<label>Apellidos</label>-->
+									<input type="text" class="form-control" name="apellido" [(ngModel)]="usuario.apellido" placeholder="Apellidos">
+									</div>
+									<div class="col-md-4">
+									<!--<label>Email</label>-->
+									<input type="text" class="form-control" name="email"  placeholder="Email" [(ngModel)]="usuario.email">
+									</div>
+
+								 </div>						
+								 <br>
+
+								 <div class="row">
+									<div class="col-md-4">
+									<!--<label>Tipo de Documento</label>-->
+										<select class="form-control" name="tipodoc"  [(ngModel)]="usuario.tipodoc">
+											<option value="DNI">DNI</option>
+											<option value="CE">CE</option>
+										</select>
+									</div>
+									<div class="col-md-4">
+									<!--<label>Número de Documento</label>-->
+									<input type="text" class="form-control" name="numdoc" placeholder="Número de Documento" [(ngModel)]="usuario.numdoc">
+									</div>
+									<div class="col-md-4">
+									<!--<label>Teléfono</label>-->
+									<input type="text" class="form-control" name="telefono"  placeholder="Teléfono" [(ngModel)]="usuario.telefono">
+									</div>
+
+								 </div>						
+
+								 <br>
+								 
+								 
+
+								 <div class="row">
+									<div class="col-md-12"><label>Agregar Servicios</label> </div>
+								 </div>
+									
+								 <div class="row">
+									<div class="col-md-4">
+										<select class="form-control" name="servicio" [(ngModel)]="usuario.servicio">
+											<option [ngValue]="objeto" *ngFor="let objeto of servicios">{{objeto.description}}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+											<input type="text" class="form-control" name="dispositivo" [(ngModel)]="usuario.dispositivo" placeholder="Serie de Dispositivo">
+									</div>
+
+									<div class="col-md-5">
+											<input type="text" class="form-control" name="ubicacion" [(ngModel)]="usuario.ubicacion" placeholder="Ubicación de Dispositivo">
+									</div>
+								 </div>
+
+								 <div class="row">
+									<div class="col-md-4">
+										<select class="form-control" name="plan" [(ngModel)]="usuario.plan">
+											<option [ngValue]="objeto" *ngFor="let objeto of planes">{{objeto.description}}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+											<input type="date" class="form-control" name="inscripcion" [(ngModel)]="usuario.inscripcion" placeholder="Fecha de inscripcion">
+									</div>
+
+									<div class="col-md-5">
+											<input type="date" class="form-control" name="finalizacion" [(ngModel)]="usuario.finalizacion" placeholder="Fecha de finalización">
+									</div>
+								 </div>
+
+
+								 <div class="row">
+									<div class="col-md-4">
+											<input type="text" class="form-control" name="alias" [(ngModel)]="usuario.alias" placeholder="Alias">
+									</div>
+
+									<div class="col-md-3">
+											<input type="text" class="form-control" name="tarifa" [(ngModel)]="usuario.tarifa" placeholder="Precio por Lttro">
+									</div>
+								 </div>
+<!--
+								 <div class="row" style="visibility: hidden;">
+									<div class="col-md-3">
+											<input type="text" class="form-control" name="latitud" [(ngModel)]="usuario.latitud" placeholder="Latitud">
+									</div>
+									<div class="col-md-5">
+											<input type="text" class="form-control" name="latitud" [(ngModel)]="usuario.longitud" placeholder="Longitud">
+									</div>
+									<div class="col-md-5">
+											&nbsp;
+									</div>
+								 </div>
+-->								 
+								 <div class="row">
+									<div class="col-md-4">
+										<select class="form-control" name="departamento" [(ngModel)]="usuario.departamento">
+											<option [ngValue]="dep" *ngFor="let dep of departamentos">{{dep.departamento}}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<select class="form-control" name="provincia" [(ngModel)]="usuario.provincia">
+											<option [ngValue]="pro" *ngFor="let pro of provincias">{{pro.provincia}}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<select class="form-control" name="distrito" [(ngModel)]="usuario.distrito">
+											<option [ngValue]="dis" *ngFor="let dis of distritos">{{dis.distrito}}</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+											<div align="center"> <span (click)="addItem()" class="icon-plus icons font-2xl"></span>	</div>
+									</div>
+								 </div>
+
+
+
+<!--
+								 <div class="row">
+									<div class="col-md-12">
+									
+									  <table class="table table-striped">
+										<thead>
+										  <tr>
+											<th colspan="3"><div align="center">Agregar Servicios</div></th>
+											
+										  </tr>
+										</thead>
+										 
+										<tbody>
+ 									    <tr>
+												<td>
+												<select class="form-control" name="servicio" [(ngModel)]="usuario.servicio">
+													<option [ngValue]="objeto" *ngFor="let objeto of servicios">{{objeto.description}}</option>
+												</select>
+												</td>
+												<td>
+													<input type="text" class="form-control" name="dispositivo" [(ngModel)]="usuario.dispositivo" placeholder="Número de Dispositivo">
+												</td>
+										</tr>															   
+ 									    <tr>
+												<td>
+													<input type="text" class="form-control" name="dispositivo" [(ngModel)]="usuario.ubicacion" placeholder="Ubicación de Dispositivo">
+												</td>
+												<td> 
+													<span (click)="addItem()" class="icon-plus icons font-2xl"></span>										
+												</td>
+										</tr>															   
+										</tbody>
+										
+									  </table>
+									
+									</div>
+
+								 </div>						
+-->
+
+								 <div class="row" *ngIf="usuario.devices.length > 0">
+									<div class="col-md-12">
+									
+									  <table class="table table-striped">
+										<thead>
+										  <tr class="odd gradeX">
+											<th>SERVICIO</th>
+											<th>DISPOSITIVO</th>
+											<th>ACCIÓN</th>
+										  </tr>
+										</thead>
+										<!-- -->
+										<tbody>
+ 									    <tr *ngFor="let item of usuario.devices; let i=index">
+												<td>{{item.description}}</td>
+												<td>{{item.serie}}</td>
+												<td> 
+													<span (click)="deleteItem(item)" class="icon-close icons font-2xl"></span>										
+												</td>
+										</tr>															   
+										</tbody>
+										
+									  </table>
+									  
+		  
+									</div>
+								 </div>						
+
+								</form>
+
+							</div>
+
+						 </div>
+						 
+				  </div>
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-primary" (click)="addUsuario()">Guardar</button>
+				  </div>
+				</div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+	
+			<div bsModal #myModalUpd="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalActualiza" aria-hidden="true">
+			  <div class="modal-dialog modal-primary" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+
+				  <div class="modal-body">
+
+						 <div class="row">
+							<div class="col-md-12">
+
+								<form class="form-register">
+
+								 <div class="row">
+									<div class="col-md-6">
+									<!--<label>Nombres</label>-->
+									<input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" placeholder="Nombres">
+									</div>
+									<div class="col-md-6">
+									<!--<label>Apellidos</label>-->
+									<input type="text" class="form-control" name="apellido" [(ngModel)]="usuario.apellido" placeholder="Apellidos">
+									</div>
+								 </div>						
+								 <br>
+								 <div class="row">
+									<div class="col-md-6">
+									<!--<label>Email</label>-->
+									<input type="text" class="form-control" name="email"  placeholder="Email" [(ngModel)]="usuario.email" readonly>
+									</div>
+									<div class="col-md-6">
+									<!--<label>Teléfono</label>-->
+									<input type="text" class="form-control" name="telefono"  placeholder="Teléfono" [(ngModel)]="usuario.telefono">
+									</div>
+								 </div>						
+								 <br>
+								 <div class="row">
+									<div class="col-md-6">
+									<!--<label>Tipo de Documento</label>-->
+										<select class="form-control" name="tipodoc"  [(ngModel)]="usuario.tipodoc">
+											<option value="DNI">DNI</option>
+											<option value="CE">CE</option>
+										</select>
+									</div>
+									<div class="col-md-6">
+									<!--<label>Número de Documento</label>-->
+									<input type="text" class="form-control" name="numdoc" placeholder="Número de Documento" [(ngModel)]="usuario.numdoc">
+									</div>
+								 </div>						
+
+								<!--
+								 <br>
+								 <div class="row">
+									<div class="col-md-12">
+									
+									  <table class="table table-striped">
+										<thead>
+										  <tr>
+											<th colspan="3"><div align="center">Agregar Servicios</div></th>
+											
+										  </tr>
+										</thead>
+									
+										<tbody>
+ 									    <tr>
+												<td>
+												<select class="form-control" name="servicio" [(ngModel)]="usuario.servicio">
+													<option [ngValue]="objeto" *ngFor="let objeto of servicios">{{objeto.description}}</option>
+												</select>
+												</td>
+												<td>
+													<input type="text" class="form-control" name="dispositivo" [(ngModel)]="usuario.dispositivo" placeholder="Número de Dispositivo">
+												</td>
+												<td> 
+													<span (click)="addItem()" class="icon-plus icons font-2xl"></span>										
+												</td>
+										</tr>															   
+										</tbody>
+										
+									  </table>
+									
+									</div>
+
+								 </div>						
+
+
+								 <div class="row" *ngIf="usuario.devices.length > 0">
+									<div class="col-md-12">
+									
+									  <table class="table table-striped">
+										<thead>
+										  <tr class="odd gradeX">
+											<th>SERVICIO</th>
+											<th>DISPOSITIVO</th>
+											<th>ACCIÓN</th>
+										  </tr>
+										</thead>
+										<tbody>
+ 									    <tr *ngFor="let item of usuario.devices; let i=index">
+												<td>{{item.description}}</td>
+												<td>{{item.dispositivo}}</td>
+												<td> 
+													<span (click)="deleteItem(item)" class="icon-close icons font-2xl"></span>										
+												</td>
+										</tr>															   
+										</tbody>
+										
+									  </table>
+									  
+		  
+									</div>
+								 </div>						
+								
+								-->
+										
+								</form>
+
+							</div>
+
+						 </div>
+						 
+
+				  </div>
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" (click)="closeEdit()">Cerrar</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-primary" (click)="updateUsuario()">Modificar</button>
+				  </div>
+				</div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+
+			<div bsModal #myModalAlert="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="1500" role="dialog" aria-labelledby="myModalAlert" aria-hidden="true">
+			  <div class="modal-dialog modal-primary modal-lg" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+				  
+				  <div class="modal-body">
+						 <div class="row">
+							<div class="col-md-12">
+								&nbsp;<br><br>
+							</div>
+						 </div>
+				  
+						 <div class="row">
+							<div class="col-md-12">
+								{{mensaje}}	
+							</div>
+						 </div>
+
+						 <div class="row">
+							<div class="col-md-12">
+								&nbsp;<br><br>
+							</div>
+						 </div>
+				  </div>
+
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" (click)="closeAlert()">Cerrar</button>
+				  </div>  
+
+				</div>
+
+
+			  </div>
+			</div>
+			
+				
+	
+        </div>
+		<!--
+        <div class="card-body">
+          <div class="row">
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" type="text" class="form-control" id="name" placeholder="Usuario">				
+              </div>
+            </div>
+  
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" type="text" class="form-control" id="name" placeholder="Nombres">				
+              </div>
+            </div>
+  
+            <div class="col-sm-4">
+				<i class="cui-magnifying-glass icons font-2xl d-block mt-2"></i>
+				
+			</div>
+			
+          </div>
+          
+		</div>
+		  -->
+
+
+      </div>
+    </div><!--/.col-->
+    
+  </div>
+ 
+ 
+
+
+  <div class="row">
+
+
+    <!--/.col-->
+    <div class="col-lg-12">
+      <div class="card">
+		<div class="card-header">
+          <i class="fa fa-align-justify"></i> Administración de Usuarios
+
+<!--
+<div class="row">
+  <div class="col-xs-12 col-12">
+    <div class="content-wrapper">
+      <p class="content-item" *ngFor="let content of returnedArray">{{content}}</p>
+    </div>
+    <pagination [totalItems]="contentArray.length" 
+	itemsPerPage=5
+	(pageChanged)="pageChanged($event)"></pagination>
+  </div>
+</div>
+-->
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>NOMBRE</th>
+                <th>USUARIO</th>
+                <th>DOCUMENTO</th>
+                <th>ESTADO</th>
+                <th>ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody>
+			
+		    <tr *ngFor="let objeto of returnedUsuarios">
+				<td>{{objeto.apellido}}, {{objeto.nombre}}</td>
+				<td>{{objeto.email}}</td>
+				<td>{{objeto.tipodoc}}: {{objeto.numdoc}} </td>
+                <td>
+					<span *ngIf="objeto.estado == 0" class="badge badge-warning">INACTIVO</span>
+					<span *ngIf="objeto.estado == 1" class="badge badge-success">ACTIVO</span>
+				</td>
+
+				<td> 
+					<i (click)="edit(objeto)" class="fa fa-edit fa-lg mt-2"></i>
+					&nbsp;&nbsp;&nbsp;
+					<i *ngIf="objeto.estado == 1" (click)="statusUsuario(objeto)" class="fa fa-thumbs-o-down fa-lg mt-2"></i>
+					<i *ngIf="objeto.estado == 0" (click)="statusUsuario(objeto)" class="fa fa-thumbs-o-up fa-lg mt-2"></i>
+					&nbsp;&nbsp;&nbsp;
+					<i (click)="service(objeto)" class="icon-plus fa-lg mt-2"></i>
+				</td>
+			</tr>															   
+			
+            </tbody>
+          </table>
+		  
+    <pagination [totalItems]="listUsuarios.length" 
+	itemsPerPage={{paginationNumber}}
+	(pageChanged)="pageChanged($event)"></pagination>
+    	    
+
+<!--
+			<pagination 
+			[totalItems]="returnedUsuarios.length" 
+			[(ngModel)]="currentPage" 
+			itemsPerPage=5
+			(pageChanged)="pageChanged($event)"></pagination>
+
+
+			<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+			
+
+
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+ -->
+       </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+
+
+</div>

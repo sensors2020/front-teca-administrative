@@ -1,0 +1,187 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-magnifier"></i> Búsqueda
+
+
+			<div bsModal #myModalAdd="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalRegistro" aria-hidden="true">
+			  <div class="modal-dialog modal-primary" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+
+				  <div class="modal-body">
+
+
+						 <div class="row">
+							<div class="col-md-12">
+
+
+								 <div class="row">
+									<div class="col-md-12">
+									<label><b>Ubicación:</b> Av. Tacna 1233 - Lima Cercado</label>
+									</div>
+								 </div>						
+
+								 <div class="row">
+									<div class="col-md-6">
+									<label><b>Consumo Total (Lt):</b>{{consumoTotal}}</label>
+									</div>
+									<div class="col-md-6">
+									<label><b>Precio Total (S/):</b> {{precioTotal}}</label>
+									</div>
+								 </div>						
+
+							</div>
+						</div>
+
+
+
+
+						 <div class="row">
+							<div class="col-md-12">
+
+								<form class="form-register">
+
+								 <div class="row" *ngIf="historico.length > 0">
+									<div class="col-md-12">
+									
+									  <table class="table table-striped">
+										<thead>
+										  <tr class="odd gradeX">
+											<th>FECHA</th>
+											<th>CONSUMO (LT)</th>
+											<th>PRECIO S/.</th>
+										 </tr>
+										</thead>
+										<!-- -->
+										<tbody>
+ 									    <tr *ngFor="let item of historico; let i=index">
+												<td>{{item.fecha}}</td>
+												<td>{{item.consumo}}</td>
+												<td>{{item.precio}}</td>												
+										</tr>															   
+										</tbody>
+										
+									  </table>
+									  
+		  
+									</div>
+								 </div>						
+
+								</form>
+
+							</div>
+
+						 </div>
+						 
+
+				  </div>
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-primary" (click)="close()">Cerrar</button>
+				  </div>
+				</div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+
+	
+        </div>
+        <div class="card-body">
+          <div class="row">
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <!--<label for="name">Usuario</label>-->
+                <input type="text" type="text" class="form-control" id="nombre" placeholder="Nombres de Usuario">				
+              </div>
+            </div>
+	
+            <div class="col-sm-4">
+              <div class="form-group">
+                <!--<label for="name">Nombres</label>-->
+                <input type="text" type="text" class="form-control" id="dispositivo" placeholder="Serie de Dispositivo">				
+              </div>
+            </div>
+  
+            <div class="col-sm-4">
+				<i class="cui-magnifying-glass icons font-2xl d-block mt-2"></i>
+				
+			</div>
+			
+          </div><!--/.row-->
+          
+		
+		</div>
+      </div>
+    </div><!--/.col-->
+    
+  </div>
+ 
+ 
+
+
+  <div class="row">
+
+
+    <!--/.col-->
+    <div class="col-lg-12">
+      <div class="card">
+		<div class="card-header">
+          <i class="fa fa-align-justify"></i> Administración de Servicios
+
+
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>NOMBRE</th>
+                <th>INSCRIPCIÓN</th>
+                <th>DISPOSITIVO</th>
+                <th>CONSUMO (LT)</th>
+                <th>ESTADO</th>
+                <th>ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody>
+			
+		    <tr *ngFor="let objeto of returnedUsuarios">
+				<td>{{objeto.nombres}}</td>
+				<td>{{objeto.registro}}</td>
+				<td>{{objeto.serie}}</td>
+				<td>{{objeto.consumo}}</td>
+                <td>
+					<span *ngIf="objeto.estado == 0" class="badge badge-warning">INACTIVO</span>
+					<span *ngIf="objeto.estado == 1" class="badge badge-success">ACTIVO</span>
+				</td>
+
+				<td> 
+					<i (click)="view(objeto)" class="fa fa-building-o fa-lg mt-2"></i>
+					&nbsp;&nbsp;&nbsp;
+					<i *ngIf="objeto.estado == 1" class="fa fa-thumbs-o-down fa-lg mt-2"></i>
+					<i *ngIf="objeto.estado == 0" class="fa fa-thumbs-o-up fa-lg mt-2"></i>
+				</td>
+			</tr>															   
+			
+            </tbody>
+          </table>
+		  
+    <pagination [totalItems]="listUsuarios.length" 
+	itemsPerPage={{paginationNumber}}
+	(pageChanged)="pageChanged($event)"></pagination>
+    	    
+
+
+       </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+
+
+</div>

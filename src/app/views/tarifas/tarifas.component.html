@@ -1,0 +1,239 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-magnifier"></i> Búsqueda
+
+
+
+			<div bsModal #myModal="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalRegistro" aria-hidden="true">
+			  <div class="modal-dialog modal-primary" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+
+				  <div class="modal-body">
+
+						 <div class="row">
+							<div class="col-md-12">
+
+								<form class="form-register">
+
+
+								 <div class="row">
+									<div class="col-md-6">
+									<label>Departamento</label>&nbsp; {{usuario.departamento}}
+										<!--
+										<select class="form-control" name="departamento" [(ngModel)]="usuario.departamento">
+											<option [ngValue]="dep" *ngFor="let dep of departamentos">{{dep.departamento}}</option>
+										</select>
+										-->
+									</div>
+									<div class="col-md-6">
+									<label>Provincia</label>&nbsp; {{usuario.provincia}}
+										<!--
+										<select class="form-control" name="provincia" [(ngModel)]="usuario.provincia">
+											<option [ngValue]="pro" *ngFor="let pro of provincias">{{pro.provincia}}</option>
+										</select>
+										-->
+									</div>
+								 </div>
+
+								 <br>
+								 <div class="row">
+									<div class="col-md-6">
+									<label>Distrito</label>&nbsp; {{usuario.distrito}}
+										<!--
+										<select class="form-control" name="distrito" [(ngModel)]="usuario.distrito">
+											<option [ngValue]="dis" *ngFor="let dis of distritos">{{dis.distrito}}</option>
+										</select>
+										-->
+									</div>
+
+									<div class="col-md-6">
+									<label>Ingresa tarifa</label>
+									<input type="text" class="form-control" name="nombres" [(ngModel)]="usuario.tarifa" placeholder="Tarifa">
+									</div>
+								 </div>
+
+								</form>
+
+							</div>
+
+						 </div>
+						 
+
+				  </div>
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" (click)="closeEdit()">Cerrar</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-primary" (click)="updateTarifa()">Guardar</button>
+				  </div>
+				</div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+	
+			<div bsModal #myModalAlert="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="1500" role="dialog" aria-labelledby="myModalAlert" aria-hidden="true">
+			  <div class="modal-dialog modal-primary modal-lg" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">{{titulo}}</h4>
+				  </div>
+				  
+				  <div class="modal-body">
+						 <div class="row">
+							<div class="col-md-12">
+								&nbsp;<br><br>
+							</div>
+						 </div>
+				  
+						 <div class="row">
+							<div class="col-md-12">
+								{{mensaje}}	
+							</div>
+						 </div>
+
+						 <div class="row">
+							<div class="col-md-12">
+								&nbsp;<br><br>
+							</div>
+						 </div>
+				  </div>
+
+				  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" (click)="closeAlert()">Cerrar</button>
+				  </div>  
+
+				</div>
+
+
+			  </div>
+			</div>
+	
+	
+        </div>
+		<!--
+        <div class="card-body">
+		
+				<div class="row">
+					<div class="col-md-4">
+						<select class="form-control" name="departamento2" [(ngModel)]="usuario.departamento2">
+							<option [ngValue]="dep" *ngFor="let dep of departamentos">{{dep.departamento}}</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select class="form-control" name="provincia2" [(ngModel)]="usuario.provincia2">
+							<option [ngValue]="pro" *ngFor="let pro of provincias">{{pro.provincia}}</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select class="form-control" name="distrito2" [(ngModel)]="usuario.distrito2">
+							<option [ngValue]="dis" *ngFor="let dis of distritos">{{dis.distrito}}</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<i class="cui-magnifying-glass icons font-2xl d-block mt-2"></i>
+					</div>
+				</div>
+								 
+		</div>
+		-->
+		
+      </div>
+    </div><!--/.col-->
+    
+  </div>
+ 
+ 
+
+
+  <div class="row">
+
+
+    <!--/.col-->
+    <div class="col-lg-12">
+      <div class="card">
+		<div class="card-header">
+          <i class="fa fa-align-justify"></i> Administración de Tarifas por Zonas
+
+<!--
+<div class="row">
+  <div class="col-xs-12 col-12">
+    <div class="content-wrapper">
+      <p class="content-item" *ngFor="let content of returnedArray">{{content}}</p>
+    </div>
+    <pagination [totalItems]="contentArray.length" 
+	itemsPerPage=5
+	(pageChanged)="pageChanged($event)"></pagination>
+  </div>
+</div>
+-->
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>DEPARTAMENTO</th>
+                <th>PROVINCIA</th>
+                <th>DISTRITO</th>
+                <th>TARIFA S/</th>
+                <th>ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody>
+			
+	
+		    <tr *ngFor="let objeto of returnedUbigeos">
+				<td>{{objeto.departamento}}</td>
+				<td>{{objeto.provincia}}</td>
+				<td>{{objeto.distrito}}</td>
+				<td>{{objeto.tarifa}}</td>
+
+				<td> 
+					<i (click)="edit(objeto)" class="fa fa-edit fa-lg mt-2"></i>
+				</td>
+			</tr>															   
+			
+            </tbody>
+          </table>
+		  
+    <pagination [totalItems]="ubigeos.length" 
+	itemsPerPage={{paginationNumber}}
+	(pageChanged)="pageChanged($event)"></pagination>
+    	    
+
+<!--
+			<pagination 
+			[totalItems]="returnedUsuarios.length" 
+			[(ngModel)]="currentPage" 
+			itemsPerPage=5
+			(pageChanged)="pageChanged($event)"></pagination>
+
+
+			<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+			
+
+
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+ -->
+       </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+
+
+</div>

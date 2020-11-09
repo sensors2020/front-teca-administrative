@@ -1,0 +1,157 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Búsqueda
+        </div>
+        <div class="card-body">
+
+		  <div class="row">
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name">Inicio</label>
+				<input type="date" class="form-control" id="inicio" name="inicio" [(ngModel)]="inicio" placeholder="Inicio">				
+              </div>
+            </div>
+  
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name">Fin</label>
+				<input type="date" class="form-control" id="fin" name="fin" [(ngModel)]="fin" placeholder="Fin">				
+              </div>
+            </div>
+  
+   
+          </div><!--/.row-->
+         
+
+		  <div class="row">
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name">Código Dispositivo</label>
+                <input type="text" class="form-control" id="name" placeholder="Código Dispositivo">				
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+				
+				&nbsp;&nbsp;&nbsp;
+				<br><i class="cui-magnifying-glass icons font-2xl d-block mt-2"></i>
+            </div>
+
+          </div>
+
+		
+		</div>
+      </div>
+    </div><!--/.col-->
+    
+  </div>
+  
+  <div class="row">
+    
+<div class="col-lg-12">
+      <div class="card">
+       <div class="card-header">
+          <i class="fa fa-align-justify"></i> Reporte
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>NOMBRE</th>
+                <th>USUARIO</th>
+                <th>SERVICIO</th>
+                <th>DISPOSITIVO</th>
+                <th>INSCRIPCIÓN</th>
+                <th>ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                    <td>Marco Vega</td>
+                    <td>mvega@gmail.com</td>
+                    <td>Consumo de Agua</td>
+                    <td>DC01223800</td>
+                    <td>15/01/2020</td>
+                    <td> 						
+						<span (click)="edit(modified)" class="icon-pencil">
+						&nbsp;
+						</span>
+					</td>
+              </tr>
+              <tr>
+                    <td>Marco Vega</td>
+                    <td>mvega@gmail.com</td>
+                    <td>Consumo de Agua</td>
+                    <td>DC04323825</td>
+                    <td>15/01/2020</td>
+                    <td> 						
+						<span (click)="edit(modified)" class="icon-pencil">
+						&nbsp;
+						</span>
+					</td>
+              </tr>
+              <tr>
+                    <td>Ricardo Vega</td>
+                    <td>rvega@gmail.com</td>
+                    <td>Consumo de Agua</td>
+                    <td>DC04323825</td>
+                    <td>15/01/2020</td>
+                    <td> 						
+						<span (click)="edit(modified)" class="icon-pencil">
+						&nbsp;
+						</span>
+					</td>
+              </tr>
+              <tr>
+                    <td>Maria Peña</td>
+                    <td>mpena@gmail.com</td>
+                    <td>Consumo de Agua</td>
+                    <td>DC02323854</td>
+                    <td>15/01/2020</td>
+                    <td> 						
+						<span (click)="edit(modified)" class="icon-pencil">
+						&nbsp;
+						</span>
+					</td>
+              </tr>
+              <tr>
+                    <td>Juan Torres</td>
+                    <td>jtorres@gmail.com</td>
+                    <td>Consumo de Agua</td>
+                    <td>DC04223167</td>
+                    <td>21/02/2020</td>
+                    <td> 						
+						<span (click)="edit(modified)" class="icon-pencil">
+						&nbsp;
+						</span>
+					</td>
+              </tr>
+              <tr>
+                    <td>Martin Perez</td>
+                    <td>mperez@gmail.com</td>
+                    <td>Consumo de Agua</td>
+                    <td>DC06323134</td>
+                    <td>05/03/2020</td>
+                    <td> 						
+						<span (click)="edit(modified)" class="icon-pencil">
+						&nbsp;
+						</span>
+					</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+    
+	
+  </div>
+
+</div>
